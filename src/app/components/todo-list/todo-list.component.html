@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-9 mx-auto">
+      <div class="shadow py-5 px-3 rounded">
+        <div class="todo-items" *ngIf="_todos?.length; else elseBlock">
+          <div class="border px-2 py-3 mb-1" [ngClass]="todo.active ? 'border-success' : 'border-danger'" *ngFor="let todo of _todos">
+            <h5 [ngClass]="{'strike': todo.active}">{{todo.title}}</h5>
+            <input type="checkbox" class="form-check-input align-baseline" [checked]="todo.active" (click)="onComplete(todo)">
+            <span class="px-2 align-baseline">Mark as completed</span>
+            <button class="btn btn-danger py-1 align-baseline" (click)="onDelete(todo)">Delete</button>
+          </div>
+        </div>
+        <ng-template #elseBlock>
+          <div class="alert alert-warning bg-warning">
+            No items to show, please add todo items above !
+          </div>
+        </ng-template>
+      </div>
+      
+    </div>
+  </div>

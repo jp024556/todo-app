@@ -1,0 +1,2 @@
+<app-add-todo (addTodo)="todoAdd($event)"></app-add-todo>
+<app-todo-list [_todos]=todos (makeComplete)="markIt($event)" (delete)="deleteIt($event)"></app-todo-list>
