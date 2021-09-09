@@ -1,6 +1,7 @@
 # TodoApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.4.
+
 Access live version from [here](https://jp024556.github.io/todo-app/)
 
 ## Development server
