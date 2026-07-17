@@ -1,0 +1,23 @@
+name: Deploy to Statpio
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: export NODE_OPTIONS=--openssl-legacy-provider && npm run build
+      - name: Create Build Archive
+        run: cd dist/todo-app && zip -r ../build.zip .
+      - name: Upload to Statpio
+        run: |
+          curl -X POST -F "file=@build.zip" \
+          -H "Authorization: Bearer ${{ secrets.STATPIO_API_KEY }}" \
+          https://statpio.com/api/projects/${{ secrets.STATPIO_PROJECT_SLUG }}/deployments
